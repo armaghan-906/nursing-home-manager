@@ -2,6 +2,175 @@
   animation: fadeIn 0.3s ease;
 }
 
+/* ── Grouped layout ──────────────────────────────────────── */
+.resident-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.resident-group {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--bg-card);
+}
+
+/* ── Resident header ─────────────────────────────────────── */
+.resident-group-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  cursor: pointer;
+  background: var(--bg-elevated);
+  border-bottom: 1px solid var(--border);
+  transition: background var(--transition);
+  user-select: none;
+}
+
+.resident-group-header:hover {
+  background: var(--bg-hover);
+}
+
+.resident-group-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+}
+
+.collapse-icon {
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.resident-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--primary-dim, rgba(99,102,241,0.15));
+  color: var(--primary-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.resident-group-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.resident-group-name {
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.resident-group-progress-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.progress-track {
+  width: 120px;
+  height: 5px;
+  background: var(--border);
+  border-radius: 99px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--success);
+  border-radius: 99px;
+  transition: width 0.4s ease;
+}
+
+.progress-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.overdue-dot,
+.blocked-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.overdue-dot { background: var(--warning); }
+.blocked-dot { background: var(--danger); }
+
+.view-resident-btn {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 5px 12px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  white-space: nowrap;
+  font-family: var(--font);
+  transition: all var(--transition);
+  flex-shrink: 0;
+}
+
+.view-resident-btn:hover {
+  border-color: var(--primary-light);
+  color: var(--primary-light);
+}
+
+/* ── Tasks table inside group ────────────────────────────── */
+.resident-group-tasks {
+  overflow-x: auto;
+}
+
+.resident-group-tasks table {
+  width: 100%;
+}
+
+.resident-group-tasks thead tr {
+  background: transparent;
+}
+
+.resident-group-tasks thead th {
+  font-size: 0.78rem;
+  padding: 8px 12px;
+  color: var(--text-muted);
+  font-weight: 500;
+  border-bottom: 1px solid var(--border);
+}
+
+.resident-group-tasks tbody tr td {
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.88rem;
+}
+
+.resident-group-tasks tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.resident-group-tasks tbody tr.row-completed {
+  opacity: 0.55;
+}
+
+/* ── Task elements ───────────────────────────────────────── */
 .task-table-title {
   font-weight: 500;
 }
@@ -50,6 +219,12 @@
   font-weight: 400;
 }
 
+/* ── Funding badge extra colour ──────────────────────────── */
+.badge-purple {
+  background: rgba(139, 92, 246, 0.15);
+  color: #a78bfa;
+}
+
 @media (max-width: 768px) {
   .filter-group {
     flex-wrap: wrap;
@@ -57,5 +232,11 @@
   .filter-group select {
     flex: 1;
     min-width: 100px;
+  }
+  .progress-track {
+    width: 80px;
+  }
+  .view-resident-btn {
+    display: none;
   }
 }
