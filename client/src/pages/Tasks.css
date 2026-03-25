@@ -1,0 +1,61 @@
+.tasks-page {
+  animation: fadeIn 0.3s ease;
+}
+
+.task-table-title {
+  font-weight: 500;
+}
+
+.completed-text {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.task-status-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 2px;
+  transition: transform var(--transition);
+}
+
+.task-status-btn:hover {
+  transform: scale(1.15);
+}
+
+.resident-link {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--primary-light);
+  font-size: 0.88rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color var(--transition);
+  font-family: var(--font);
+}
+
+.resident-link:hover {
+  color: var(--primary);
+}
+
+.room-tag {
+  font-size: 0.72rem;
+  background: var(--bg-elevated);
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+@media (max-width: 768px) {
+  .filter-group {
+    flex-wrap: wrap;
+  }
+  .filter-group select {
+    flex: 1;
+    min-width: 100px;
+  }
+}
