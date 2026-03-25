@@ -31,6 +31,11 @@ app.use('/api/residents', require('./routes/residents'));
 app.use('/api/tasks', require('./routes/tasks'));
 app.use('/api/workflows', require('./routes/workflows'));
 
+// Root
+app.get('/', (req, res) => {
+  res.json({ message: 'Nursing Home Manager API', status: 'running' });
+});
+
 // Health check
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
