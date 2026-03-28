@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import api from '../utils/api';
 import { toast } from 'react-toastify';
 import {
-  FiCheckCircle, FiCircle, FiClock, FiLoader, FiAlertTriangle,
+  FiCheckCircle, FiCircle, FiLoader, FiAlertTriangle,
   FiFilter, FiSearch, FiXCircle, FiChevronDown, FiChevronRight, FiUser
 } from 'react-icons/fi';
 import './Tasks.css';
@@ -41,18 +41,22 @@ const categoryLabel = {
   'hl-tasks': 'HL Tasks'
 };
 
-const fundingBadge = {
-  'private': 'badge-purple',
-  'd2a': 'badge-info',
-  'ccg-icb': 'badge-warning',
-  'la': 'badge-muted'
-};
-
 const fundingLabel = {
   'private': 'Private',
-  'd2a': 'D2A',
-  'ccg-icb': 'CCG ICB',
-  'la': 'LA'
+  'private-respite': 'Private Respite',
+  'la': 'Local Authority',
+  'la-respite': 'LA Respite',
+  'ccg-icb': 'NHS D2A',
+  'd2a': 'NHS CHC'
+};
+
+const fundingBadge = {
+  'private': 'badge-purple',
+  'private-respite': 'badge-purple',
+  'la': 'badge-muted',
+  'la-respite': 'badge-muted',
+  'ccg-icb': 'badge-info',
+  'd2a': 'badge-warning'
 };
 
 const Tasks = () => {
@@ -103,12 +107,12 @@ const Tasks = () => {
   const filteredTasks = tasks.filter(t => {
     if (!search) return true;
     const q = search.toLowerCase();
-    const resident = t.residentId;
+    const r = t.residentId;
     return (
       t.title.toLowerCase().includes(q) ||
-      (resident?.firstName?.toLowerCase().includes(q)) ||
-      (resident?.lastName?.toLowerCase().includes(q)) ||
-      (resident?.roomNumber?.toLowerCase().includes(q))
+      r?.firstName?.toLowerCase().includes(q) ||
+      r?.lastName?.toLowerCase().includes(q) ||
+      r?.roomNumber?.toLowerCase().includes(q)
     );
   });
 
@@ -120,10 +124,11 @@ const Tasks = () => {
     return acc;
   }, {});
 
+  // Sort by room number ascending
   const groups = Object.values(grouped).sort((a, b) => {
-    const aName = `${a.resident?.lastName} ${a.resident?.firstName}`;
-    const bName = `${b.resident?.lastName} ${b.resident?.firstName}`;
-    return aName.localeCompare(bName);
+    const aRoom = a.resident?.roomNumber || '';
+    const bRoom = b.resident?.roomNumber || '';
+    return aRoom.localeCompare(bRoom, undefined, { numeric: true });
   });
 
   return (
@@ -183,6 +188,21 @@ const Tasks = () => {
         </div>
       </div>
 
+      {/* Column headings */}
+      {!loading && groups.length > 0 && (
+        <div className="group-col-headings">
+          <span style={{ width: 28 }} />
+          <span style={{ width: 32 }} />
+          <span className="gcol gcol-room">Room</span>
+          <span className="gcol gcol-name">Name</span>
+          <span className="gcol gcol-admission">Admission</span>
+          <span className="gcol gcol-funding">Funding</span>
+          <span className="gcol gcol-rate">Net Weekly Rate</span>
+          <span className="gcol gcol-progress">Progress</span>
+          <span style={{ width: 90 }} />
+        </div>
+      )}
+
       {/* Grouped Task List */}
       {loading ? (
         <div className="loading-skeleton">
@@ -208,41 +228,59 @@ const Tasks = () => {
               t.dueDate && new Date(t.dueDate) < new Date() && t.status !== 'completed'
             );
             const hasBlocked = resTasks.some(t => t.status === 'blocked');
+            const admissionDate = resident?.admissionDate
+              ? new Date(resident.admissionDate).toLocaleDateString('en-GB')
+              : '—';
+            const rate = resident?.fundingRate
+              ? `£${parseFloat(resident.fundingRate).toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
+              : '—';
 
             return (
               <div key={id} className="resident-group">
-                {/* Resident Header */}
+                {/* Resident Header Row */}
                 <div
                   className="resident-group-header"
                   onClick={() => toggleCollapse(id)}
                 >
-                  <div className="resident-group-left">
-                    <span className="collapse-icon">
-                      {isCollapsed ? <FiChevronRight size={16} /> : <FiChevronDown size={16} />}
-                    </span>
-                    <div className="resident-avatar">
-                      <FiUser size={14} />
-                    </div>
-                    <div className="resident-group-info">
-                      <div className="resident-group-name">
-                        {resident?.firstName} {resident?.lastName}
-                        <span className="room-tag">Room {resident?.roomNumber}</span>
-                        {resident?.fundingType && (
-                          <span className={`badge badge-sm ${fundingBadge[resident.fundingType] || 'badge-muted'}`}>
-                            {fundingLabel[resident.fundingType] || resident.fundingType}
-                          </span>
-                        )}
-                        {hasOverdue && <span className="overdue-dot" title="Has overdue tasks" />}
-                        {hasBlocked && <span className="blocked-dot" title="Has blocked tasks" />}
-                      </div>
-                      <div className="resident-group-progress-bar">
-                        <div className="progress-track">
-                          <div className="progress-fill" style={{ width: `${pct}%` }} />
-                        </div>
-                        <span className="progress-label">{completedCount}/{total} completed</span>
-                      </div>
-                    </div>
+                  <span className="collapse-icon">
+                    {isCollapsed ? <FiChevronRight size={16} /> : <FiChevronDown size={16} />}
+                  </span>
+
+                  <div className="resident-avatar">
+                    <FiUser size={14} />
                   </div>
+
+                  <span className="gcol gcol-room">
+                    <span className="room-number-badge">{resident?.roomNumber || '—'}</span>
+                  </span>
+
+                  <span className="gcol gcol-name">
+                    <span className="resident-group-name">
+                      {resident?.firstName} {resident?.lastName}
+                      {hasOverdue && <span className="overdue-dot" title="Has overdue tasks" />}
+                      {hasBlocked && <span className="blocked-dot" title="Has blocked tasks" />}
+                    </span>
+                  </span>
+
+                  <span className="gcol gcol-admission">{admissionDate}</span>
+
+                  <span className="gcol gcol-funding">
+                    {resident?.fundingType && (
+                      <span className={`badge badge-sm ${fundingBadge[resident.fundingType] || 'badge-muted'}`}>
+                        {fundingLabel[resident.fundingType] || resident.fundingType}
+                      </span>
+                    )}
+                  </span>
+
+                  <span className="gcol gcol-rate">{rate}</span>
+
+                  <span className="gcol gcol-progress">
+                    <div className="progress-track">
+                      <div className="progress-fill" style={{ width: `${pct}%` }} />
+                    </div>
+                    <span className="progress-label">{completedCount}/{total}</span>
+                  </span>
+
                   <button
                     className="view-resident-btn"
                     onClick={(e) => { e.stopPropagation(); navigate(`/residents/${id}`); }}

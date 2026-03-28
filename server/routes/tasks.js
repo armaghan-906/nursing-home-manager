@@ -50,7 +50,7 @@ router.get('/', protect, async (req, res) => {
     }
 
     const tasks = await Task.find(query)
-      .populate('residentId', 'firstName lastName roomNumber')
+      .populate('residentId', 'firstName lastName roomNumber admissionDate fundingType fundingRate')
       .sort({ order: 1, createdAt: 1 });
 
     res.json(tasks);
