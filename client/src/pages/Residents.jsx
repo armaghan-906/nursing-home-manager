@@ -7,10 +7,12 @@ import ResidentModal from '../components/ResidentModal';
 import './Residents.css';
 
 const fundingLabels = {
-  'private': 'Private / Respite',
-  'd2a': 'CCG D2A',
-  'ccg-icb': 'CCG ICB',
-  'la': 'Local Authority'
+  'private': 'Private',
+  'private-respite': 'Private Respite',
+  'la': 'Local Authority',
+  'la-respite': 'LA Respite',
+  'ccg-icb': 'NHS D2A',
+  'd2a': 'NHS CHC'
 };
 
 const statusLabels = {
@@ -30,10 +32,12 @@ const statusBadge = {
 };
 
 const fundingBadge = {
-  'private': 'badge-success',
-  'd2a': 'badge-info',
-  'ccg-icb': 'badge-primary',
-  'la': 'badge-warning'
+  'private': 'badge-purple',
+  'private-respite': 'badge-purple',
+  'la': 'badge-muted',
+  'la-respite': 'badge-muted',
+  'ccg-icb': 'badge-info',
+  'd2a': 'badge-warning'
 };
 
 const Residents = () => {
@@ -167,10 +171,12 @@ const Residents = () => {
             onChange={(e) => setFundingFilter(e.target.value)}
           >
             <option value="all">All Funding</option>
-            <option value="private">Private / Respite</option>
-            <option value="d2a">CCG D2A</option>
-            <option value="ccg-icb">CCG ICB</option>
+            <option value="private">Private</option>
+            <option value="private-respite">Private Respite</option>
             <option value="la">Local Authority</option>
+            <option value="la-respite">LA Respite</option>
+            <option value="ccg-icb">NHS D2A</option>
+            <option value="d2a">NHS CHC</option>
           </select>
         </div>
       </div>
@@ -193,19 +199,22 @@ const Residents = () => {
           <table>
             <thead>
               <tr>
-                <th>Resident</th>
                 <th>Room</th>
-                <th>Status</th>
-                <th>Funding</th>
-                <th>Rate</th>
-                <th>Progress</th>
+                <th>Name</th>
                 <th>Admission</th>
+                <th>Funding</th>
+                <th>Net Weekly Rate</th>
+                <th>Progress</th>
+                <th>Status</th>
                 <th></th>
               </tr>
             </thead>
             <tbody>
-              {residents.map((r) => (
+              {[...residents].sort((a, b) =>
+                (a.roomNumber || '').localeCompare(b.roomNumber || '', undefined, { numeric: true })
+              ).map((r) => (
                 <tr key={r._id} className="resident-row" onClick={() => navigate(`/residents/${r._id}`)}>
+                  <td><span className="room-number">{r.roomNumber}</span></td>
                   <td>
                     <div className="resident-name-cell">
                       <div className="resident-avatar">
@@ -217,10 +226,9 @@ const Residents = () => {
                       </div>
                     </div>
                   </td>
-                  <td><span className="room-number">{r.roomNumber}</span></td>
-                  <td><span className={`badge ${statusBadge[r.status]}`}>{statusLabels[r.status]}</span></td>
-                  <td><span className={`badge ${fundingBadge[r.fundingType]}`}>{fundingLabels[r.fundingType]}</span></td>
-                  <td className="date-cell">{r.fundingRate ? `£${r.fundingRate}` : '—'}</td>
+                  <td className="date-cell">{new Date(r.admissionDate).toLocaleDateString('en-GB')}</td>
+                  <td><span className={`badge ${fundingBadge[r.fundingType] || 'badge-muted'}`}>{fundingLabels[r.fundingType] || r.fundingType}</span></td>
+                  <td className="date-cell">{r.fundingRate ? `£${parseFloat(r.fundingRate).toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` : '—'}</td>
                   <td>
                     <div className="progress-cell">
                       <div className="progress-bar">
@@ -229,7 +237,7 @@ const Residents = () => {
                       <span className="progress-text">{r.completedTasks}/{r.totalTasks}</span>
                     </div>
                   </td>
-                  <td className="date-cell">{new Date(r.admissionDate).toLocaleDateString('en-GB')}</td>
+                  <td><span className={`badge ${statusBadge[r.status]}`}>{statusLabels[r.status]}</span></td>
                   <td>
                     <div className="actions-cell" onClick={(e) => e.stopPropagation()}>
                       <button

@@ -260,6 +260,7 @@ select {
 .badge-info { background: var(--info-bg); color: var(--info); }
 .badge-primary { background: var(--primary-bg); color: var(--primary-light); }
 .badge-muted { background: var(--bg-hover); color: var(--text-muted); }
+.badge-purple { background: rgba(139, 92, 246, 0.15); color: #a78bfa; }
 
 /* Progress Bar */
 .progress-bar {
