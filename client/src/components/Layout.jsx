@@ -33,7 +33,7 @@ const Layout = () => {
           <div className="sidebar-logo">
             <FiShield size={20} />
           </div>
-          <span className="sidebar-title">Oakwood</span>
+          <span className="sidebar-title">The White House Nursing Home</span>
           <button className="sidebar-close-btn" onClick={() => setSidebarOpen(false)}>
             <FiX size={20} />
           </button>

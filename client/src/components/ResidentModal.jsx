@@ -13,11 +13,7 @@ const ResidentModal = ({ resident, onClose, onSave }) => {
     fundingType: 'private',
     fundingRate: '',
     status: 'admission',
-    nhsNumber: '',
-    gpName: '',
-    gpContact: '',
-    medicalNotes: '',
-    allergies: '',
+    admissionNotes: '',
     primaryContact: { name: '', phone: '', email: '', relationship: '' },
     emergencyContact: { name: '', phone: '', relationship: '' },
     notes: ''
@@ -35,11 +31,7 @@ const ResidentModal = ({ resident, onClose, onSave }) => {
         fundingType: resident.fundingType || 'private',
         fundingRate: resident.fundingRate || '',
         status: resident.status || 'admission',
-        nhsNumber: resident.nhsNumber || '',
-        gpName: resident.gpName || '',
-        gpContact: resident.gpContact || '',
-        medicalNotes: resident.medicalNotes || '',
-        allergies: resident.allergies || '',
+        admissionNotes: resident.admissionNotes || resident.medicalNotes || '',
         primaryContact: resident.primaryContact || { name: '', phone: '', email: '', relationship: '' },
         emergencyContact: resident.emergencyContact || { name: '', phone: '', relationship: '' },
         notes: resident.notes || ''
@@ -117,10 +109,6 @@ const ResidentModal = ({ resident, onClose, onSave }) => {
                 <label>Admission Date</label>
                 <input type="date" value={form.admissionDate} onChange={(e) => handleChange('admissionDate', e.target.value)} />
               </div>
-              <div className="form-group">
-                <label>NHS Number</label>
-                <input value={form.nhsNumber} onChange={(e) => handleChange('nhsNumber', e.target.value)} />
-              </div>
             </div>
 
             {/* Funding & Status */}
@@ -128,10 +116,12 @@ const ResidentModal = ({ resident, onClose, onSave }) => {
               <div className="form-group">
                 <label>Funding Type</label>
                 <select value={form.fundingType} onChange={(e) => handleChange('fundingType', e.target.value)}>
-                  <option value="private">Private / Respite</option>
-                  <option value="d2a">CCG D2A</option>
-                  <option value="ccg-icb">CCG ICB</option>
+                  <option value="private">Private</option>
+                  <option value="private-respite">Private Respite</option>
                   <option value="la">Local Authority</option>
+                  <option value="la-respite">LA Respite</option>
+                  <option value="ccg-icb">NHS D2A</option>
+                  <option value="d2a">NHS CHC</option>
                 </select>
               </div>
               <div className="form-group">
@@ -152,20 +142,8 @@ const ResidentModal = ({ resident, onClose, onSave }) => {
               </div>
             </div>
 
-            {/* GP */}
-            <div className="form-row">
-              <div className="form-group">
-                <label>GP Name</label>
-                <input value={form.gpName} onChange={(e) => handleChange('gpName', e.target.value)} />
-              </div>
-              <div className="form-group">
-                <label>GP Contact</label>
-                <input value={form.gpContact} onChange={(e) => handleChange('gpContact', e.target.value)} />
-              </div>
-            </div>
-
-            {/* Primary Contact */}
-            <h3 style={{ fontSize: '0.9rem', fontWeight: 600, marginBottom: 12, marginTop: 8, color: 'var(--text-secondary)' }}>Primary Contact</h3>
+            {/* Next of Kin */}
+            <h3 style={{ fontSize: '0.9rem', fontWeight: 600, marginBottom: 12, marginTop: 8, color: 'var(--text-secondary)' }}>Next of Kin</h3>
             <div className="form-row">
               <div className="form-group">
                 <label>Name</label>
@@ -187,14 +165,10 @@ const ResidentModal = ({ resident, onClose, onSave }) => {
               </div>
             </div>
 
-            {/* Medical */}
+            {/* Admission Notes */}
             <div className="form-group">
-              <label>Medical Notes</label>
-              <textarea rows={3} value={form.medicalNotes} onChange={(e) => handleChange('medicalNotes', e.target.value)} />
-            </div>
-            <div className="form-group">
-              <label>Allergies</label>
-              <input value={form.allergies} onChange={(e) => handleChange('allergies', e.target.value)} />
+              <label>Admission Notes</label>
+              <textarea rows={3} value={form.admissionNotes} onChange={(e) => handleChange('admissionNotes', e.target.value)} />
             </div>
           </div>
 
