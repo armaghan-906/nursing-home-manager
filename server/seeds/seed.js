@@ -263,11 +263,11 @@ const seedDB = async () => {
         fundingType: 'all', category: 'records-update',
         name: 'Records Update — All',
         tasks: [
-          { title: 'Update TWH Bed List',           defaultAssignee: SALIMA,  priority: 'high',   order: 1, estimatedDays: 1 },
-          { title: 'Update Resident NOK List',       defaultAssignee: SALIMA,  priority: 'high',   order: 2, estimatedDays: 1 },
-          { title: 'Update Birthday List',           defaultAssignee: SALIMA,  priority: 'medium', order: 3, estimatedDays: 1 },
-          { title: 'Update Invoicee Sheet',          defaultAssignee: SALIMA,  priority: 'high',   order: 4, estimatedDays: 1 },
-          { title: 'File Admission Notification',    defaultAssignee: SHIRLEY, priority: 'medium', order: 5, estimatedDays: 2 }
+          { title: 'Upload Admission Notification',  defaultAssignee: SHIRLEY, priority: 'medium', order: 1, estimatedDays: 2 },
+          { title: 'Update TWH Bed List',            defaultAssignee: SALIMA,  priority: 'high',   order: 2, estimatedDays: 1 },
+          { title: 'Update Resident NOK List',       defaultAssignee: SALIMA,  priority: 'high',   order: 3, estimatedDays: 1 },
+          { title: 'Update Birthday List',           defaultAssignee: SALIMA,  priority: 'medium', order: 4, estimatedDays: 1 },
+          { title: 'Update Invoicee Sheet',          defaultAssignee: SALIMA,  priority: 'high',   order: 5, estimatedDays: 1 }
         ]
       },
       // SECTION 3: INVOICING — Private
