@@ -275,13 +275,12 @@ const seedDB = async () => {
         fundingType: 'private', category: 'invoicing-agreement',
         name: 'Invoicing & Agreement — Private',
         tasks: [
-          { title: 'Generate FA Invoice',                 defaultAssignee: SALIMA, priority: 'urgent', order: 1, estimatedDays: 1 },
-          { title: 'Send Welcome Email to NOK',           defaultAssignee: SALIMA, priority: 'high',   order: 2, estimatedDays: 1 },
-          { title: 'Issue Invoice to NOK',                defaultAssignee: SALIMA, priority: 'high',   order: 3, estimatedDays: 1 },
-          { title: 'Prepare Fee Letter',                  defaultAssignee: SALIMA, priority: 'high',   order: 4, estimatedDays: 2 },
-          { title: 'Prepare Service User Contract (SUPA)',defaultAssignee: SALIMA, priority: 'urgent', order: 5, estimatedDays: 2 },
-          { title: 'Prepare PE Price List',               defaultAssignee: SALIMA, priority: 'medium', order: 6, estimatedDays: 2 },
-          { title: 'Send Standing Order Form',            defaultAssignee: SALIMA, priority: 'high',   order: 7, estimatedDays: 3 }
+          { title: 'Generate FA Invoice',          defaultAssignee: SALIMA, priority: 'urgent', order: 1, estimatedDays: 1 },
+          { title: 'Prepare Fee Letter',           defaultAssignee: SALIMA, priority: 'high',   order: 2, estimatedDays: 2 },
+          { title: 'Prepare Standing Order Form',  defaultAssignee: SALIMA, priority: 'high',   order: 3, estimatedDays: 3 },
+          { title: 'Attach PE Price List',         defaultAssignee: SALIMA, priority: 'medium', order: 4, estimatedDays: 2 },
+          { title: 'Attach Generic SU Contract',   defaultAssignee: SALIMA, priority: 'urgent', order: 5, estimatedDays: 2 },
+          { title: 'Send Welcome Email',           defaultAssignee: SALIMA, priority: 'high',   order: 6, estimatedDays: 1 }
         ]
       },
       // SECTION 3: INVOICING — D2A
