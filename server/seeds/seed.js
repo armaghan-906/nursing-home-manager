@@ -325,12 +325,13 @@ const seedDB = async () => {
         fundingType: 'all', category: 'contract',
         name: 'Contract — All',
         tasks: [
-          { title: 'Confirm Welcome Email Received',          defaultAssignee: SALIMA, priority: 'medium', order: 1, estimatedDays: 3 },
-          { title: 'Schedule PAQ Assessment',                 defaultAssignee: AJITHA, priority: 'high',   order: 2, estimatedDays: 5 },
-          { title: 'Send Service User Contract for Signature',defaultAssignee: SALIMA, priority: 'urgent', order: 3, estimatedDays: 2 },
-          { title: 'Upload Signed Service User Contract',     defaultAssignee: SALIMA, priority: 'high',   order: 4, estimatedDays: 7 },
-          { title: 'Upload Signed Fee Letter',                defaultAssignee: SALIMA, priority: 'high',   order: 5, estimatedDays: 7 },
-          { title: 'Forward NOK Details to Care Team',        defaultAssignee: SHIRLEY,priority: 'medium', order: 6, estimatedDays: 2 }
+          { title: 'Confirm Welcome Email Received',                   defaultAssignee: SALIMA,  priority: 'medium', order: 1, estimatedDays: 3  },
+          { title: 'Schedule PAQ Survey',                              defaultAssignee: AJITHA,  priority: 'high',   order: 2, estimatedDays: 5  },
+          { title: 'Send Service User Contract for Signature',         defaultAssignee: SALIMA,  priority: 'urgent', order: 3, estimatedDays: 2  },
+          { title: 'Upload Signed SU Contract to Folder',              defaultAssignee: SALIMA,  priority: 'high',   order: 4, estimatedDays: 7  },
+          { title: 'Schedule Fee 10-Month Fee Increase Notification',  defaultAssignee: SALIMA,  priority: 'medium', order: 5, estimatedDays: 14 },
+          { title: 'Update Resident NOK List with Address',            defaultAssignee: SALIMA,  priority: 'medium', order: 6, estimatedDays: 2  },
+          { title: 'Forward NOK Details to Home Liaison',              defaultAssignee: SHIRLEY, priority: 'medium', order: 7, estimatedDays: 2  }
         ]
       },
       // SECTION 5: LONG-TERM FUNDING — Private
