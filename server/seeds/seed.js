@@ -379,12 +379,10 @@ const seedDB = async () => {
         fundingType: 'ccg-icb', category: 'fnc',
         name: 'FNC Assessment — CCG ICB',
         tasks: [
-          { title: 'Schedule FNC Assessment',              defaultAssignee: AJITHA, priority: 'high', order: 1, estimatedDays: 7   },
-          { title: 'Complete FNC Assessment',              defaultAssignee: AJITHA, priority: 'high', order: 2, estimatedDays: 14  },
-          { title: 'Record FNC Outcome & Eligibility Date',defaultAssignee: SALIMA, priority: 'high', order: 3, estimatedDays: 14  },
-          { title: 'Update Billing for FNC Band',          defaultAssignee: SALIMA, priority: 'high', order: 4, estimatedDays: 14  },
-          { title: 'Update Records with FNC Status',       defaultAssignee: SALIMA, priority: 'medium',order: 5, estimatedDays: 14 },
-          { title: 'Annual FNC Re-Assessment',             defaultAssignee: AJITHA, priority: 'high', order: 6, estimatedDays: 365 }
+          { title: 'Add Resident to WCL FNC Section',              defaultAssignee: SALIMA, priority: 'high',   order: 1, estimatedDays: 2  },
+          { title: 'Add FNC Assessment Update to WCL',             defaultAssignee: SALIMA, priority: 'high',   order: 2, estimatedDays: 7  },
+          { title: 'Add to Current FNC Schedule (if eligible)',     defaultAssignee: AJITHA, priority: 'medium', order: 3, estimatedDays: 14 },
+          { title: 'Raise Retrospective FNC Invoice (if applicable)',defaultAssignee: SALIMA, priority: 'high',  order: 4, estimatedDays: 7  }
         ]
       },
       // SECTION 6: FNC — Private
@@ -392,9 +390,10 @@ const seedDB = async () => {
         fundingType: 'private', category: 'fnc',
         name: 'FNC Assessment — Private',
         tasks: [
-          { title: 'Assess FNC Eligibility',                       defaultAssignee: AJITHA, priority: 'medium', order: 1, estimatedDays: 14 },
-          { title: 'Submit FNC Application (if eligible)',          defaultAssignee: AJITHA, priority: 'high',   order: 2, estimatedDays: 21 },
-          { title: 'Record FNC Outcome and Update Billing',         defaultAssignee: SALIMA, priority: 'high',   order: 3, estimatedDays: 30 }
+          { title: 'Add Resident to WCL FNC Section',              defaultAssignee: SALIMA, priority: 'high',   order: 1, estimatedDays: 2  },
+          { title: 'Add FNC Assessment Update to WCL',             defaultAssignee: SALIMA, priority: 'high',   order: 2, estimatedDays: 7  },
+          { title: 'Add to Current FNC Schedule (if eligible)',     defaultAssignee: AJITHA, priority: 'medium', order: 3, estimatedDays: 14 },
+          { title: 'Raise Retrospective FNC Invoice (if applicable)',defaultAssignee: SALIMA, priority: 'high',  order: 4, estimatedDays: 7  }
         ]
       },
       // SECTION 6: FNC — LA
@@ -402,10 +401,10 @@ const seedDB = async () => {
         fundingType: 'la', category: 'fnc',
         name: 'FNC Assessment — LA',
         tasks: [
-          { title: 'Assess FNC Eligibility',                        defaultAssignee: AJITHA, priority: 'medium', order: 1, estimatedDays: 14 },
-          { title: 'Submit FNC Application (if eligible)',           defaultAssignee: AJITHA, priority: 'high',   order: 2, estimatedDays: 21 },
-          { title: 'Record FNC Outcome & Update LA Billing',         defaultAssignee: SALIMA, priority: 'high',   order: 3, estimatedDays: 30 },
-          { title: 'Update TWH Bed List with FNC Status',            defaultAssignee: SALIMA, priority: 'medium', order: 4, estimatedDays: 30 }
+          { title: 'Add Resident to WCL FNC Section',              defaultAssignee: SALIMA, priority: 'high',   order: 1, estimatedDays: 2  },
+          { title: 'Add FNC Assessment Update to WCL',             defaultAssignee: SALIMA, priority: 'high',   order: 2, estimatedDays: 7  },
+          { title: 'Add to Current FNC Schedule (if eligible)',     defaultAssignee: AJITHA, priority: 'medium', order: 3, estimatedDays: 14 },
+          { title: 'Raise Retrospective FNC Invoice (if applicable)',defaultAssignee: SALIMA, priority: 'high',  order: 4, estimatedDays: 7  }
         ]
       },
       // SECTION 7: POST DEMISE/DISCHARGE — all
