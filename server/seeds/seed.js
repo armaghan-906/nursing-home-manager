@@ -339,9 +339,9 @@ const seedDB = async () => {
         fundingType: 'private', category: 'long-term-funding',
         name: 'Long-Term Funding — Private',
         tasks: [
-          { title: 'Set Up Recurring Invoice Profile',  defaultAssignee: SALIMA, priority: 'high',   order: 1, estimatedDays: 3  },
-          { title: 'Confirm Payment Method Active',     defaultAssignee: SALIMA, priority: 'high',   order: 2, estimatedDays: 7  },
-          { title: 'Annual Fee Review Notification',    defaultAssignee: SALIMA, priority: 'medium', order: 3, estimatedDays: 365 }
+          { title: 'Signed SU Received',                defaultAssignee: SALIMA, priority: 'high',   order: 1, estimatedDays: 3 },
+          { title: 'Set Up Recurring Invoice Profile',  defaultAssignee: SALIMA, priority: 'high',   order: 2, estimatedDays: 3 },
+          { title: 'Confirm SO Payment Method Active',  defaultAssignee: SALIMA, priority: 'high',   order: 3, estimatedDays: 7 }
         ]
       },
       // SECTION 5: LONG-TERM FUNDING — D2A
