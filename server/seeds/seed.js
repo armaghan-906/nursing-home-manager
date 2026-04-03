@@ -362,16 +362,6 @@ const seedDB = async () => {
           { title: 'Update ICB Authorisation on Renewal',   defaultAssignee: SALIMA, priority: 'high', order: 3, estimatedDays: 30   }
         ]
       },
-      // SECTION 5: LONG-TERM FUNDING — LA
-      {
-        fundingType: 'la', category: 'long-term-funding',
-        name: 'Long-Term Funding — LA',
-        tasks: [
-          { title: 'Set Up Recurring LA Invoice Profile',  defaultAssignee: SALIMA, priority: 'high',   order: 1, estimatedDays: 3   },
-          { title: 'Annual LA Funding Review',             defaultAssignee: AJITHA, priority: 'high',   order: 2, estimatedDays: 365  },
-          { title: 'Update LA Contract on Rate Change',    defaultAssignee: SALIMA, priority: 'medium', order: 3, estimatedDays: 30   }
-        ]
-      },
       // SECTION 6: FNC — CCG ICB
       {
         fundingType: 'ccg-icb', category: 'fnc',
