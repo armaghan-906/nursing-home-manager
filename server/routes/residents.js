@@ -123,7 +123,8 @@ router.get('/:id', protect, async (req, res) => {
       'long-term-funding': tasks.filter(t => t.category === 'long-term-funding'),
       'fnc': tasks.filter(t => t.category === 'fnc'),
       'post-demise-discharge': tasks.filter(t => t.category === 'post-demise-discharge'),
-      'hl-tasks': tasks.filter(t => t.category === 'hl-tasks')
+      'hl-tasks': tasks.filter(t => t.category === 'hl-tasks'),
+      'change-in-funding': tasks.filter(t => t.category === 'change-in-funding')
     };
 
     const totalTasks = tasks.length;
@@ -263,6 +264,58 @@ router.put('/:id', protect, async (req, res) => {
     }
 
     res.json(updatedResident);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// @route   POST /api/residents/:id/change-funding
+// @desc    Generate change-in-funding tasks for a new funding type
+router.post('/:id/change-funding', protect, async (req, res) => {
+  try {
+    const { newFundingType } = req.body;
+    if (!newFundingType) {
+      return res.status(400).json({ message: 'newFundingType is required' });
+    }
+
+    const resident = await Resident.findById(req.params.id);
+    if (!resident) {
+      return res.status(404).json({ message: 'Resident not found' });
+    }
+
+    const templates = await WorkflowTemplate.find({
+      category: 'change-in-funding',
+      fundingType: newFundingType,
+      isActive: true
+    });
+
+    if (!templates.length) {
+      return res.status(404).json({ message: 'No tasks configured for this funding type yet' });
+    }
+
+    const tasksToCreate = [];
+    for (const template of templates) {
+      for (const taskTemplate of template.tasks) {
+        const dueDate = new Date();
+        dueDate.setDate(dueDate.getDate() + (taskTemplate.estimatedDays || 7));
+        tasksToCreate.push({
+          residentId: resident._id,
+          title: taskTemplate.title,
+          description: taskTemplate.description || '',
+          category: 'change-in-funding',
+          fundingType: newFundingType,
+          status: 'pending',
+          priority: taskTemplate.priority,
+          assignedTo: taskTemplate.defaultAssignee || '',
+          dueDate,
+          order: taskTemplate.order,
+          createdBy: req.user._id
+        });
+      }
+    }
+
+    await Task.insertMany(tasksToCreate);
+    res.json({ message: `${tasksToCreate.length} tasks generated for ${newFundingType} funding change` });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

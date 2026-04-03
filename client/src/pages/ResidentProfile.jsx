@@ -13,10 +13,12 @@ import TaskModal from '../components/TaskModal';
 import './ResidentProfile.css';
 
 const fundingLabels = {
-  'private': 'Private / Respite',
-  'd2a': 'CCG D2A',
-  'ccg-icb': 'CCG ICB',
-  'la': 'Local Authority'
+  'private': 'Private',
+  'private-respite': 'Private Respite',
+  'la': 'Local Authority',
+  'la-respite': 'LA Respite',
+  'ccg-icb': 'NHS D2A',
+  'd2a': 'NHS CHC'
 };
 
 const statusIcons = {
@@ -49,7 +51,8 @@ const categoryLabels = {
   'long-term-funding': 'Long-Term Funding',
   'fnc': 'FNC Assessment',
   'post-demise-discharge': 'Post Demise / Discharge',
-  'hl-tasks': 'HL Supplementary Tasks'
+  'hl-tasks': 'HL Supplementary Tasks',
+  'change-in-funding': 'Change in Funding'
 };
 
 const categoryIcons = {
@@ -59,7 +62,8 @@ const categoryIcons = {
   'long-term-funding': '💰',
   'fnc': '🏥',
   'post-demise-discharge': '🚪',
-  'hl-tasks': '💛'
+  'hl-tasks': '💛',
+  'change-in-funding': '🔄'
 };
 
 const ResidentProfile = () => {
@@ -77,9 +81,12 @@ const ResidentProfile = () => {
     'long-term-funding': false,
     'fnc': false,
     'post-demise-discharge': false,
-    'hl-tasks': false
+    'hl-tasks': false,
+    'change-in-funding': false
   });
   const [uploadingTaskId, setUploadingTaskId] = useState(null);
+  const [changeFundingType, setChangeFundingType] = useState('');
+  const [generatingFunding, setGeneratingFunding] = useState(false);
 
   const fetchResident = useCallback(async () => {
     try {
@@ -148,6 +155,25 @@ const ResidentProfile = () => {
     }
   };
 
+  const handleChangeFunding = async () => {
+    if (!changeFundingType) {
+      toast.error('Please select a funding type');
+      return;
+    }
+    setGeneratingFunding(true);
+    try {
+      const { data } = await api.post(`/residents/${id}/change-funding`, { newFundingType: changeFundingType });
+      toast.success(data.message);
+      setChangeFundingType('');
+      setExpandedCategories(prev => ({ ...prev, 'change-in-funding': true }));
+      fetchResident();
+    } catch (err) {
+      toast.error(err.response?.data?.message || 'Failed to generate tasks');
+    } finally {
+      setGeneratingFunding(false);
+    }
+  };
+
   if (loading) {
     return (
       <div className="profile-loading">
@@ -159,7 +185,7 @@ const ResidentProfile = () => {
 
   if (!resident) return null;
 
-  const categories = ['records-update', 'invoicing-agreement', 'contract', 'long-term-funding', 'fnc', 'post-demise-discharge', 'hl-tasks'];
+  const categories = ['records-update', 'invoicing-agreement', 'contract', 'long-term-funding', 'fnc', 'change-in-funding', 'post-demise-discharge', 'hl-tasks'];
 
   return (
     <div className="profile-page">
@@ -269,8 +295,34 @@ const ResidentProfile = () => {
 
               {isExpanded && (
                 <div className="tasks-list">
+                  {cat === 'change-in-funding' && (
+                    <div className="change-funding-trigger" style={{ display: 'flex', gap: 10, alignItems: 'center', padding: '12px 16px', borderBottom: '1px solid var(--border)' }}>
+                      <select
+                        value={changeFundingType}
+                        onChange={(e) => setChangeFundingType(e.target.value)}
+                        style={{ flex: 1 }}
+                      >
+                        <option value="">— Select new funding type —</option>
+                        <option value="private">Private</option>
+                        <option value="private-respite">Private Respite</option>
+                        <option value="la">Local Authority</option>
+                        <option value="la-respite">LA Respite</option>
+                        <option value="ccg-icb">NHS D2A</option>
+                        <option value="d2a">NHS CHC</option>
+                      </select>
+                      <button
+                        className="btn btn-primary btn-sm"
+                        onClick={handleChangeFunding}
+                        disabled={generatingFunding || !changeFundingType}
+                      >
+                        {generatingFunding ? 'Generating...' : 'Generate Tasks'}
+                      </button>
+                    </div>
+                  )}
                   {tasks.length === 0 ? (
-                    <div className="no-tasks">No tasks in this category</div>
+                    <div className="no-tasks">
+                      {cat === 'change-in-funding' ? 'No change-in-funding tasks yet — select a funding type above to generate tasks' : 'No tasks in this category'}
+                    </div>
                   ) : (
                     tasks.map((task) => {
                       const StatusIcon = statusIcons[task.status] || FiCircle;

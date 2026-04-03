@@ -12,7 +12,7 @@ const templateTaskSchema = new mongoose.Schema({
 const workflowTemplateSchema = new mongoose.Schema({
   fundingType: {
     type: String,
-    enum: ['private', 'd2a', 'ccg-icb', 'la', 'all'],
+    enum: ['private', 'private-respite', 'd2a', 'ccg-icb', 'la', 'la-respite', 'all'],
     required: true
   },
   category: {
@@ -24,7 +24,8 @@ const workflowTemplateSchema = new mongoose.Schema({
       'long-term-funding',
       'fnc',
       'post-demise-discharge',
-      'hl-tasks'
+      'hl-tasks',
+      'change-in-funding'
     ],
     required: true
   },

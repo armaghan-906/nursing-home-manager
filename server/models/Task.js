@@ -35,13 +35,14 @@ const taskSchema = new mongoose.Schema({
       'long-term-funding',
       'fnc',
       'post-demise-discharge',
-      'hl-tasks'
+      'hl-tasks',
+      'change-in-funding'
     ],
     required: [true, 'Task category is required']
   },
   fundingType: {
     type: String,
-    enum: ['private', 'd2a', 'ccg-icb', 'la', 'all'],
+    enum: ['private', 'private-respite', 'd2a', 'ccg-icb', 'la', 'la-respite', 'all'],
     default: 'all'
   },
   status: {
