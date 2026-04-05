@@ -400,15 +400,14 @@ const seedDB = async () => {
         fundingType: 'all', category: 'post-demise-discharge',
         name: 'Post Demise / Discharge — All',
         tasks: [
-          { title: 'Record Discharge / Demise Date',                                          defaultAssignee: SALIMA,  priority: 'urgent', order: 1, estimatedDays: 1 },
-          { title: 'Upload Discharge Notification',                                           defaultAssignee: SALIMA,  priority: 'urgent', order: 2, estimatedDays: 1 },
-          { title: 'Update TWH Bed List',                                                     defaultAssignee: SALIMA,  priority: 'urgent', order: 3, estimatedDays: 1 },
-          { title: 'Archive Resident NOK List Entry',                                         defaultAssignee: SALIMA,  priority: 'high',   order: 4, estimatedDays: 1 },
-          { title: 'Remove from Birthday List',                                               defaultAssignee: SALIMA,  priority: 'medium', order: 5, estimatedDays: 2 },
-          { title: 'Cancel Recurring Invoice Profile',                                        defaultAssignee: SALIMA,  priority: 'urgent', order: 6, estimatedDays: 1 },
-          { title: 'Send Condolence Email with Invoice/Credit and O/S Expenses (if applicable)', defaultAssignee: SHIRLEY, priority: 'high',   order: 7, estimatedDays: 3 },
-          { title: 'Update FNC List (if applicable)',                                         defaultAssignee: SALIMA,  priority: 'medium', order: 8, estimatedDays: 2 },
-          { title: 'Archive Entry from Database',                                             defaultAssignee: SALIMA,  priority: 'medium', order: 9, estimatedDays: 7 }
+          { title: 'Record Discharge / Demise Date',                        defaultAssignee: SALIMA,  priority: 'urgent', order: 1, estimatedDays: 1 },
+          { title: 'Upload Discharge Notification',                         defaultAssignee: SALIMA,  priority: 'urgent', order: 2, estimatedDays: 1 },
+          { title: 'Update TWH Bed List',                                   defaultAssignee: SALIMA,  priority: 'urgent', order: 3, estimatedDays: 1 },
+          { title: 'Archive Resident NOK List Entry',                       defaultAssignee: SALIMA,  priority: 'high',   order: 4, estimatedDays: 1 },
+          { title: 'Remove from Birthday List',                             defaultAssignee: SALIMA,  priority: 'medium', order: 5, estimatedDays: 2 },
+          { title: 'Send Condolence Email O/S Expenses (if applicable)',    defaultAssignee: SHIRLEY, priority: 'high',   order: 6, estimatedDays: 3 },
+          { title: 'Update FNC List (if applicable)',                       defaultAssignee: SALIMA,  priority: 'medium', order: 7, estimatedDays: 2 },
+          { title: 'Archive Entry from Database',                           defaultAssignee: SALIMA,  priority: 'medium', order: 8, estimatedDays: 7 }
         ]
       },
       // HL TASKS — all
