@@ -35,7 +35,7 @@ const residentSchema = new mongoose.Schema({
   },
   fundingType: {
     type: String,
-    enum: ['private', 'd2a', 'ccg-icb', 'la'],
+    enum: ['private', 'private-respite', 'd2a', 'ccg-icb', 'la', 'la-respite'],
     required: [true, 'Please provide funding type'],
     default: 'private'
   },
@@ -59,11 +59,11 @@ const residentSchema = new mongoose.Schema({
     phone: { type: String, default: '' },
     relationship: { type: String, default: '' }
   },
-  medicalNotes: {
+  admissionNotes: {
     type: String,
     default: ''
   },
-  allergies: {
+  medicalNotes: {
     type: String,
     default: ''
   },
