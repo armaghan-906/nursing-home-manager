@@ -7,7 +7,7 @@ const TaskModal = ({ task, residentId, onClose, onSave }) => {
   const [form, setForm] = useState({
     title: '',
     description: '',
-    category: 'admission',
+    category: 'records-update',
     status: 'pending',
     priority: 'medium',
     assignedTo: '',
@@ -22,7 +22,7 @@ const TaskModal = ({ task, residentId, onClose, onSave }) => {
       setForm({
         title: task.title || '',
         description: task.description || '',
-        category: task.category || 'admission',
+        category: task.category || 'records-update',
         status: task.status || 'pending',
         priority: task.priority || 'medium',
         assignedTo: task.assignedTo || '',
@@ -82,9 +82,14 @@ const TaskModal = ({ task, residentId, onClose, onSave }) => {
               <div className="form-group">
                 <label>Category</label>
                 <select value={form.category} onChange={(e) => handleChange('category', e.target.value)}>
-                  <option value="admission">Admission</option>
-                  <option value="ongoing-care">Ongoing Care</option>
-                  <option value="discharge">Discharge</option>
+                  <option value="records-update">Records Update</option>
+                  <option value="invoicing-agreement">Invoicing & Agreement</option>
+                  <option value="contract">Contract</option>
+                  <option value="long-term-funding">Long-Term Funding</option>
+                  <option value="fnc">FNC Assessment</option>
+                  <option value="post-demise-discharge">Post Demise / Discharge</option>
+                  <option value="hl-tasks">HL Supplementary Tasks</option>
+                  <option value="change-in-funding">Change in Funding</option>
                 </select>
               </div>
               <div className="form-group">
