@@ -312,12 +312,11 @@ const seedDB = async () => {
         fundingType: 'la', category: 'invoicing-agreement',
         name: 'Invoicing & Agreement — LA',
         tasks: [
-          { title: 'Generate LA Invoice',                 defaultAssignee: SALIMA,  priority: 'urgent', order: 1, estimatedDays: 1 },
-          { title: 'Send Welcome Email to NOK',           defaultAssignee: SALIMA,  priority: 'high',   order: 2, estimatedDays: 1 },
-          { title: 'Receive & Upload Service Level Agreement (SLA)', defaultAssignee: SHIRLEY, priority: 'urgent', order: 3, estimatedDays: 3 },
-          { title: 'Prepare Service User Contract',       defaultAssignee: SALIMA,  priority: 'urgent', order: 4, estimatedDays: 2 },
-          { title: 'Prepare Fee Letter (LA Rate)',         defaultAssignee: SALIMA,  priority: 'high',   order: 5, estimatedDays: 2 },
-          { title: 'Prepare PE Price List',               defaultAssignee: SALIMA,  priority: 'medium', order: 6, estimatedDays: 2 }
+          { title: 'Receive and Upload Signed Service Agreement', defaultAssignee: SALIMA, priority: 'urgent', order: 1, estimatedDays: 2 },
+          { title: 'Generate LA Invoice',                         defaultAssignee: SALIMA, priority: 'urgent', order: 2, estimatedDays: 1 },
+          { title: 'Attach PE Price List',                        defaultAssignee: SALIMA, priority: 'medium', order: 3, estimatedDays: 2 },
+          { title: 'Attach Generic STC Contract',                 defaultAssignee: SALIMA, priority: 'urgent', order: 4, estimatedDays: 2 },
+          { title: 'Send Welcome Email',                          defaultAssignee: SALIMA, priority: 'high',   order: 5, estimatedDays: 1 }
         ]
       },
       // SECTION 4: CONTRACT — all
