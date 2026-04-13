@@ -13,11 +13,12 @@ async function run() {
   if (!template) { console.log('Template not found'); process.exit(1); }
 
   template.tasks = [
-    { title: 'Receive and Upload Signed Service Agreement', defaultAssignee: 'Salima', priority: 'urgent', order: 1, estimatedDays: 2 },
-    { title: 'Generate FA Invoice',                         defaultAssignee: 'Salima', priority: 'urgent', order: 2, estimatedDays: 1 },
-    { title: 'Attach PE Price List',                        defaultAssignee: 'Salima', priority: 'medium', order: 3, estimatedDays: 2 },
-    { title: 'Attach Generic STC Contract',                 defaultAssignee: 'Salima', priority: 'urgent', order: 4, estimatedDays: 2 },
-    { title: 'Send Welcome Email',                          defaultAssignee: 'Salima', priority: 'high',   order: 5, estimatedDays: 1 }
+    { title: 'Generate FA Invoice',         defaultAssignee: 'Salima', priority: 'urgent', order: 1, estimatedDays: 1 },
+    { title: 'Prepare Fee Letter',          defaultAssignee: 'Salima', priority: 'high',   order: 2, estimatedDays: 2 },
+    { title: 'Prepare Standing Order Form', defaultAssignee: 'Salima', priority: 'high',   order: 3, estimatedDays: 3 },
+    { title: 'Attach PE Price List',        defaultAssignee: 'Salima', priority: 'medium', order: 4, estimatedDays: 2 },
+    { title: 'Attach Generic SU Contract',  defaultAssignee: 'Salima', priority: 'urgent', order: 5, estimatedDays: 2 },
+    { title: 'Send Welcome Email',          defaultAssignee: 'Salima', priority: 'high',   order: 6, estimatedDays: 1 }
   ];
   await template.save();
   console.log('Template updated');
