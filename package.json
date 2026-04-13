@@ -9,8 +9,6 @@
     "client": "cd client && npm run dev",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "seed": "node server/seeds/seed.js",
-    "build": "npm --prefix client install && npm --prefix client run build",
-    "build:client": "node vercel-build.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
