@@ -313,7 +313,7 @@ const seedDB = async () => {
         name: 'Invoicing & Agreement — LA',
         tasks: [
           { title: 'Receive and Upload Signed Service Agreement', defaultAssignee: SALIMA, priority: 'urgent', order: 1, estimatedDays: 2 },
-          { title: 'Generate LA Invoice',                         defaultAssignee: SALIMA, priority: 'urgent', order: 2, estimatedDays: 1 },
+          { title: 'Generate FA Invoice',                         defaultAssignee: SALIMA, priority: 'urgent', order: 2, estimatedDays: 1 },
           { title: 'Attach PE Price List',                        defaultAssignee: SALIMA, priority: 'medium', order: 3, estimatedDays: 2 },
           { title: 'Attach Generic STC Contract',                 defaultAssignee: SALIMA, priority: 'urgent', order: 4, estimatedDays: 2 },
           { title: 'Send Welcome Email',                          defaultAssignee: SALIMA, priority: 'high',   order: 5, estimatedDays: 1 }
