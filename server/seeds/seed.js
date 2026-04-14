@@ -286,25 +286,21 @@ const seedDB = async () => {
       // SECTION 3: INVOICING — D2A
       {
         fundingType: 'd2a', category: 'invoicing-agreement',
-        name: 'Invoicing & Agreement — CCG D2A',
+        name: 'Invoicing & Agreement — NHS D2A',
         tasks: [
-          { title: 'Generate D2A Invoice to CCG',        defaultAssignee: SALIMA,  priority: 'urgent', order: 1, estimatedDays: 1 },
-          { title: 'Send Welcome Email to NOK',          defaultAssignee: SALIMA,  priority: 'high',   order: 2, estimatedDays: 1 },
-          { title: 'Prepare Service User Contract (SUPA)',defaultAssignee: SALIMA, priority: 'urgent', order: 3, estimatedDays: 2 },
-          { title: 'Prepare Fee Letter',                 defaultAssignee: SALIMA,  priority: 'high',   order: 4, estimatedDays: 2 },
-          { title: 'Confirm CCG Purchase Order',         defaultAssignee: SHIRLEY, priority: 'urgent', order: 5, estimatedDays: 3 }
+          { title: 'Receive and Upload Signed SUPA Agreement', defaultAssignee: SALIMA, priority: 'urgent', order: 1, estimatedDays: 2 },
+          { title: 'Generate FA Invoice',                      defaultAssignee: SALIMA, priority: 'urgent', order: 2, estimatedDays: 1 },
+          { title: 'Send Welcome Email with PE Price List and Generic STC', defaultAssignee: SALIMA, priority: 'high', order: 3, estimatedDays: 1 }
         ]
       },
       // SECTION 3: INVOICING — CCG ICB
       {
         fundingType: 'ccg-icb', category: 'invoicing-agreement',
-        name: 'Invoicing & Agreement — CCG ICB',
+        name: 'Invoicing & Agreement — NHS CHC',
         tasks: [
-          { title: 'Generate ICB Invoice',                defaultAssignee: SALIMA,  priority: 'urgent', order: 1, estimatedDays: 1 },
-          { title: 'Send Welcome Email to NOK',           defaultAssignee: SALIMA,  priority: 'high',   order: 2, estimatedDays: 1 },
-          { title: 'Prepare Service User Contract (SUPA)',defaultAssignee: SALIMA,  priority: 'urgent', order: 3, estimatedDays: 2 },
-          { title: 'Prepare Fee Letter (ICB Rate)',        defaultAssignee: SALIMA,  priority: 'high',   order: 4, estimatedDays: 2 },
-          { title: 'Confirm ICB Authorisation Reference', defaultAssignee: SHIRLEY, priority: 'urgent', order: 5, estimatedDays: 3 }
+          { title: 'Receive and Upload Signed SUPA Agreement', defaultAssignee: SALIMA, priority: 'urgent', order: 1, estimatedDays: 2 },
+          { title: 'Generate FA Invoice',                      defaultAssignee: SALIMA, priority: 'urgent', order: 2, estimatedDays: 1 },
+          { title: 'Send Welcome Email with PE Price List and Generic STC', defaultAssignee: SALIMA, priority: 'high', order: 3, estimatedDays: 1 }
         ]
       },
       // SECTION 3: INVOICING — LA
