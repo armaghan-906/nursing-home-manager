@@ -417,17 +417,17 @@ const seedDB = async () => {
         fundingType: 'private', category: 'change-in-funding',
         name: 'Change in Funding — Private',
         tasks: [
-          { title: 'Date of Commencement',                                    defaultAssignee: SALIMA,  priority: 'urgent', order: 1, estimatedDays: 0 },
-          { title: 'New Funding Type',                                        defaultAssignee: SALIMA,  priority: 'urgent', order: 2, estimatedDays: 0 },
-          { title: 'Rate',                                                    defaultAssignee: SALIMA,  priority: 'urgent', order: 3, estimatedDays: 0 },
-          { title: 'Fee Letter and Invoice Sent',                             defaultAssignee: SALIMA,  priority: 'high',   order: 4, estimatedDays: 2 },
-          { title: 'New STC/SU Issued as Applicable',                         defaultAssignee: SALIMA,  priority: 'urgent', order: 5, estimatedDays: 2 },
-          { title: 'Signed STC/SU Received and Filed',                        defaultAssignee: SALIMA,  priority: 'high',   order: 6, estimatedDays: 7 },
-          { title: 'TWH Bed List Updated',                                    defaultAssignee: SALIMA,  priority: 'medium', order: 7, estimatedDays: 1 },
-          { title: 'Resident NOK List Updated',                               defaultAssignee: SALIMA,  priority: 'medium', order: 8, estimatedDays: 1 },
-          { title: 'Invoicee Sheet Updated (Care Fee & RPE)',                 defaultAssignee: SALIMA,  priority: 'medium', order: 9, estimatedDays: 1 },
-          { title: 'Recurring Invoice Profile Set Up on FA',                  defaultAssignee: SALIMA,  priority: 'high',   order: 10, estimatedDays: 3 },
-          { title: 'Signed SU Email Snoozed for 11 Mos to Issue Fee Inc/Fee Inc Master Updated', defaultAssignee: SALIMA, priority: 'medium', order: 11, estimatedDays: 1 }
+          { title: 'Date of Commencement',                                                            defaultAssignee: SALIMA,  priority: 'urgent', order: 1, estimatedDays: 0 },
+          { title: 'New Funding Type',                                                                defaultAssignee: SALIMA,  priority: 'urgent', order: 2, estimatedDays: 0 },
+          { title: 'Rate',                                                                            defaultAssignee: SALIMA,  priority: 'urgent', order: 3, estimatedDays: 0 },
+          { title: 'Fee Letter and Invoice Sent (if Private)',                                        defaultAssignee: SALIMA,  priority: 'high',   order: 4, estimatedDays: 2 },
+          { title: 'New STC/SU Issued as Applicable',                                                 defaultAssignee: SALIMA,  priority: 'urgent', order: 5, estimatedDays: 2 },
+          { title: 'Signed STC/SU Received and Filed',                                                defaultAssignee: SALIMA,  priority: 'high',   order: 6, estimatedDays: 7 },
+          { title: 'TWH Bed List Updated',                                                            defaultAssignee: SALIMA,  priority: 'medium', order: 7, estimatedDays: 1 },
+          { title: 'Resident NOK List Updated',                                                       defaultAssignee: SALIMA,  priority: 'medium', order: 8, estimatedDays: 1 },
+          { title: 'Invoicee Sheet Updated (Care Fee & RPE)',                                         defaultAssignee: SALIMA,  priority: 'medium', order: 9, estimatedDays: 1 },
+          { title: 'Recurring Invoice Profile Set Up on FA (if Private)',                             defaultAssignee: SALIMA,  priority: 'high',   order: 10, estimatedDays: 3 },
+          { title: 'Signed SU Email Snoozed for 11 Mos to Issue Fee Inc/Fee Inc Master Updated (if Private)', defaultAssignee: SALIMA, priority: 'medium', order: 11, estimatedDays: 1 }
         ]
       },
       // SECTION 8: CHANGE IN FUNDING — D2A
@@ -435,15 +435,15 @@ const seedDB = async () => {
         fundingType: 'd2a', category: 'change-in-funding',
         name: 'Change in Funding — NHS D2A',
         tasks: [
-          { title: 'Date of Commencement',                                    defaultAssignee: SALIMA,  priority: 'urgent', order: 1, estimatedDays: 0 },
-          { title: 'New Funding Type',                                        defaultAssignee: SALIMA,  priority: 'urgent', order: 2, estimatedDays: 0 },
-          { title: 'Rate',                                                    defaultAssignee: SALIMA,  priority: 'urgent', order: 3, estimatedDays: 0 },
-          { title: 'SUPA Filed and FA/TS Invoices Drafted',                   defaultAssignee: SALIMA,  priority: 'high',   order: 4, estimatedDays: 2 },
-          { title: 'New STC/SU Issued as Applicable',                         defaultAssignee: SALIMA,  priority: 'urgent', order: 5, estimatedDays: 2 },
-          { title: 'Signed STC/SU Received and Filed',                        defaultAssignee: SALIMA,  priority: 'high',   order: 6, estimatedDays: 7 },
-          { title: 'TWH Bed List Updated',                                    defaultAssignee: SALIMA,  priority: 'medium', order: 7, estimatedDays: 1 },
-          { title: 'Resident NOK List Updated',                               defaultAssignee: SALIMA,  priority: 'medium', order: 8, estimatedDays: 1 },
-          { title: 'Invoicee Sheet Updated (Care Fee & RPE)',                 defaultAssignee: SALIMA,  priority: 'medium', order: 9, estimatedDays: 1 }
+          { title: 'Date of Commencement',                                                            defaultAssignee: SALIMA,  priority: 'urgent', order: 1, estimatedDays: 0 },
+          { title: 'New Funding Type',                                                                defaultAssignee: SALIMA,  priority: 'urgent', order: 2, estimatedDays: 0 },
+          { title: 'Rate',                                                                            defaultAssignee: SALIMA,  priority: 'urgent', order: 3, estimatedDays: 0 },
+          { title: 'SUPA Filed and FA/TS Invoices Drafted (if CHC)',                                  defaultAssignee: SALIMA,  priority: 'high',   order: 4, estimatedDays: 2 },
+          { title: 'New STC/SU Issued as Applicable',                                                 defaultAssignee: SALIMA,  priority: 'urgent', order: 5, estimatedDays: 2 },
+          { title: 'Signed STC/SU Received and Filed',                                                defaultAssignee: SALIMA,  priority: 'high',   order: 6, estimatedDays: 7 },
+          { title: 'TWH Bed List Updated',                                                            defaultAssignee: SALIMA,  priority: 'medium', order: 7, estimatedDays: 1 },
+          { title: 'Resident NOK List Updated',                                                       defaultAssignee: SALIMA,  priority: 'medium', order: 8, estimatedDays: 1 },
+          { title: 'Invoicee Sheet Updated (Care Fee & RPE)',                                         defaultAssignee: SALIMA,  priority: 'medium', order: 9, estimatedDays: 1 }
         ]
       },
       // SECTION 8: CHANGE IN FUNDING — CCG ICB
@@ -451,15 +451,15 @@ const seedDB = async () => {
         fundingType: 'ccg-icb', category: 'change-in-funding',
         name: 'Change in Funding — NHS CHC',
         tasks: [
-          { title: 'Date of Commencement',                                    defaultAssignee: SALIMA,  priority: 'urgent', order: 1, estimatedDays: 0 },
-          { title: 'New Funding Type',                                        defaultAssignee: SALIMA,  priority: 'urgent', order: 2, estimatedDays: 0 },
-          { title: 'Rate',                                                    defaultAssignee: SALIMA,  priority: 'urgent', order: 3, estimatedDays: 0 },
-          { title: 'SUPA Filed and FA/TS Invoices Drafted',                   defaultAssignee: SALIMA,  priority: 'high',   order: 4, estimatedDays: 2 },
-          { title: 'New STC/SU Issued as Applicable',                         defaultAssignee: SALIMA,  priority: 'urgent', order: 5, estimatedDays: 2 },
-          { title: 'Signed STC/SU Received and Filed',                        defaultAssignee: SALIMA,  priority: 'high',   order: 6, estimatedDays: 7 },
-          { title: 'TWH Bed List Updated',                                    defaultAssignee: SALIMA,  priority: 'medium', order: 7, estimatedDays: 1 },
-          { title: 'Resident NOK List Updated',                               defaultAssignee: SALIMA,  priority: 'medium', order: 8, estimatedDays: 1 },
-          { title: 'Invoicee Sheet Updated (Care Fee & RPE)',                 defaultAssignee: SALIMA,  priority: 'medium', order: 9, estimatedDays: 1 }
+          { title: 'Date of Commencement',                                                            defaultAssignee: SALIMA,  priority: 'urgent', order: 1, estimatedDays: 0 },
+          { title: 'New Funding Type',                                                                defaultAssignee: SALIMA,  priority: 'urgent', order: 2, estimatedDays: 0 },
+          { title: 'Rate',                                                                            defaultAssignee: SALIMA,  priority: 'urgent', order: 3, estimatedDays: 0 },
+          { title: 'SUPA Filed and FA/TS Invoices Drafted (if CHC)',                                  defaultAssignee: SALIMA,  priority: 'high',   order: 4, estimatedDays: 2 },
+          { title: 'New STC/SU Issued as Applicable',                                                 defaultAssignee: SALIMA,  priority: 'urgent', order: 5, estimatedDays: 2 },
+          { title: 'Signed STC/SU Received and Filed',                                                defaultAssignee: SALIMA,  priority: 'high',   order: 6, estimatedDays: 7 },
+          { title: 'TWH Bed List Updated',                                                            defaultAssignee: SALIMA,  priority: 'medium', order: 7, estimatedDays: 1 },
+          { title: 'Resident NOK List Updated',                                                       defaultAssignee: SALIMA,  priority: 'medium', order: 8, estimatedDays: 1 },
+          { title: 'Invoicee Sheet Updated (Care Fee & RPE)',                                         defaultAssignee: SALIMA,  priority: 'medium', order: 9, estimatedDays: 1 }
         ]
       },
       // SECTION 8: CHANGE IN FUNDING — LA
@@ -467,15 +467,15 @@ const seedDB = async () => {
         fundingType: 'la', category: 'change-in-funding',
         name: 'Change in Funding — LA',
         tasks: [
-          { title: 'Date of Commencement',                                    defaultAssignee: SALIMA,  priority: 'urgent', order: 1, estimatedDays: 0 },
-          { title: 'New Funding Type',                                        defaultAssignee: SALIMA,  priority: 'urgent', order: 2, estimatedDays: 0 },
-          { title: 'Rate',                                                    defaultAssignee: SALIMA,  priority: 'urgent', order: 3, estimatedDays: 0 },
-          { title: 'Signed SLA Uploaded to SU Contracts',                     defaultAssignee: SALIMA,  priority: 'urgent', order: 4, estimatedDays: 3 },
-          { title: 'New STC/SU Issued as Applicable',                         defaultAssignee: SALIMA,  priority: 'urgent', order: 5, estimatedDays: 2 },
-          { title: 'Signed STC/SU Received and Filed',                        defaultAssignee: SALIMA,  priority: 'high',   order: 6, estimatedDays: 7 },
-          { title: 'TWH Bed List Updated',                                    defaultAssignee: SALIMA,  priority: 'medium', order: 7, estimatedDays: 1 },
-          { title: 'Resident NOK List Updated',                               defaultAssignee: SALIMA,  priority: 'medium', order: 8, estimatedDays: 1 },
-          { title: 'Invoicee Sheet Updated (Care Fee & RPE)',                 defaultAssignee: SALIMA,  priority: 'medium', order: 9, estimatedDays: 1 }
+          { title: 'Date of Commencement',                                                            defaultAssignee: SALIMA,  priority: 'urgent', order: 1, estimatedDays: 0 },
+          { title: 'New Funding Type',                                                                defaultAssignee: SALIMA,  priority: 'urgent', order: 2, estimatedDays: 0 },
+          { title: 'Rate',                                                                            defaultAssignee: SALIMA,  priority: 'urgent', order: 3, estimatedDays: 0 },
+          { title: 'Signed SLA Uploaded to SU Contracts (if LA Funding)',                             defaultAssignee: SALIMA,  priority: 'urgent', order: 4, estimatedDays: 3 },
+          { title: 'New STC/SU Issued as Applicable',                                                 defaultAssignee: SALIMA,  priority: 'urgent', order: 5, estimatedDays: 2 },
+          { title: 'Signed STC/SU Received and Filed',                                                defaultAssignee: SALIMA,  priority: 'high',   order: 6, estimatedDays: 7 },
+          { title: 'TWH Bed List Updated',                                                            defaultAssignee: SALIMA,  priority: 'medium', order: 7, estimatedDays: 1 },
+          { title: 'Resident NOK List Updated',                                                       defaultAssignee: SALIMA,  priority: 'medium', order: 8, estimatedDays: 1 },
+          { title: 'Invoicee Sheet Updated (Care Fee & RPE)',                                         defaultAssignee: SALIMA,  priority: 'medium', order: 9, estimatedDays: 1 }
         ]
       }
     ]);
