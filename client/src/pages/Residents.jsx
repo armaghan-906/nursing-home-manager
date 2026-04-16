@@ -80,15 +80,15 @@ const Residents = () => {
     fetchStats();
   }, [fetchResidents, fetchStats]);
 
-  const handleDelete = async (id) => {
-    if (!confirm('Are you sure you want to delete this resident and all associated tasks?')) return;
+  const handleArchive = async (id) => {
+    if (!confirm('Archive this resident? They will be hidden from the active list.')) return;
     try {
-      await api.delete(`/residents/${id}`);
-      toast.success('Resident deleted');
+      await api.post(`/residents/${id}/archive`);
+      toast.success('Resident archived');
       fetchResidents();
       fetchStats();
     } catch (err) {
-      toast.error('Failed to delete resident');
+      toast.error('Failed to archive resident');
     }
     setActiveMenu(null);
   };
@@ -254,8 +254,8 @@ const Residents = () => {
                           <button onClick={() => { setEditResident(r); setShowModal(true); setActiveMenu(null); }}>
                             <FiEdit2 size={14} /> Edit
                           </button>
-                          <button className="dropdown-danger" onClick={() => handleDelete(r._id)}>
-                            <FiTrash2 size={14} /> Delete
+                          <button className="dropdown-danger" onClick={() => handleArchive(r._id)}>
+                            <FiTrash2 size={14} /> Archive
                           </button>
                         </div>
                       )}

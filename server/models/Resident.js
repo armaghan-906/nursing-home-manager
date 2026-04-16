@@ -87,6 +87,10 @@ const residentSchema = new mongoose.Schema({
     type: String,
     default: ''
   },
+  archived: {
+    type: Boolean,
+    default: false
+  },
   createdBy: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'

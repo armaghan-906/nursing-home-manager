@@ -28,10 +28,11 @@ router.get('/', protect, async (req, res) => {
       query.fundingType = fundingType;
     }
 
-    // Don't show discharged/deceased by default unless explicitly asked
+    // Don't show discharged/deceased or archived by default unless explicitly asked
     if (!status) {
       query.status = { $nin: ['discharged', 'deceased'] };
     }
+    query.archived = false;
 
     const residents = await Resident.find(query)
       .sort({ lastName: 1, firstName: 1 })
@@ -293,29 +294,56 @@ router.post('/:id/change-funding', protect, async (req, res) => {
       return res.status(404).json({ message: 'No tasks configured for this funding type yet' });
     }
 
+    // Get existing tasks to avoid duplicates
+    const existingTasks = await Task.find({ residentId: resident._id });
+    const existingTitles = existingTasks.map(t => t.title);
+
     const tasksToCreate = [];
     for (const template of templates) {
       for (const taskTemplate of template.tasks) {
-        const dueDate = new Date();
-        dueDate.setDate(dueDate.getDate() + (taskTemplate.estimatedDays || 7));
-        tasksToCreate.push({
-          residentId: resident._id,
-          title: taskTemplate.title,
-          description: taskTemplate.description || '',
-          category: 'change-in-funding',
-          fundingType: newFundingType,
-          status: 'pending',
-          priority: taskTemplate.priority,
-          assignedTo: taskTemplate.defaultAssignee || '',
-          dueDate,
-          order: taskTemplate.order,
-          createdBy: req.user._id
-        });
+        // Only add tasks that don't already exist
+        if (!existingTitles.includes(taskTemplate.title)) {
+          const dueDate = new Date();
+          dueDate.setDate(dueDate.getDate() + (taskTemplate.estimatedDays || 7));
+          tasksToCreate.push({
+            residentId: resident._id,
+            title: taskTemplate.title,
+            description: taskTemplate.description || '',
+            category: 'change-in-funding',
+            fundingType: newFundingType,
+            status: 'pending',
+            priority: taskTemplate.priority,
+            assignedTo: taskTemplate.defaultAssignee || '',
+            dueDate,
+            order: taskTemplate.order,
+            createdBy: req.user._id
+          });
+        }
       }
     }
 
     await Task.insertMany(tasksToCreate);
     res.json({ message: `${tasksToCreate.length} tasks generated for ${newFundingType} funding change` });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// @route   POST /api/residents/:id/archive
+// @desc    Archive a resident (soft delete)
+router.post('/:id/archive', protect, async (req, res) => {
+  try {
+    const resident = await Resident.findByIdAndUpdate(
+      req.params.id,
+      { archived: true },
+      { new: true }
+    );
+
+    if (!resident) {
+      return res.status(404).json({ message: 'Resident not found' });
+    }
+
+    res.json({ message: 'Resident archived successfully' });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
