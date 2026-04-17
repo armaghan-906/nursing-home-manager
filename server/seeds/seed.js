@@ -8,9 +8,7 @@ const Resident = require('../models/Resident');
 const Task = require('../models/Task');
 
 const SALIMA = 'Salima';
-const SHIRLEY = 'Shirley';
-const AJITHA = 'Ajitha';
-const INDRE = 'Indre';
+const MICHELLE = 'Michelle';
 
 // Helper: parse DD/MM/YYYY or DD/MM/YY → Date
 function parseDate(str) {
@@ -249,9 +247,7 @@ const seedDB = async () => {
     const users = await User.create([
       { name: 'Admin User',  email: 'admin@twhnh.com',   password: 'admin123', role: 'admin'   },
       { name: 'Salima',      email: 'salima@twhnh.com',  password: 'staff123', role: 'manager' },
-      { name: 'Shirley',     email: 'shirley@twhnh.com', password: 'staff123', role: 'staff'   },
-      { name: 'Ajitha',      email: 'ajitha@twhnh.com',  password: 'staff123', role: 'staff'   },
-      { name: 'Indre',       email: 'indre@twhnh.com',   password: 'staff123', role: 'staff'   }
+      { name: 'Michelle',    email: 'michelle@twhnh.com', password: 'staff123', role: 'staff'   }
     ]);
     const adminUser = users[0];
     console.log(`✓ Seeded ${users.length} users`);
@@ -263,7 +259,7 @@ const seedDB = async () => {
         fundingType: 'all', category: 'records-update',
         name: 'Records Update — All',
         tasks: [
-          { title: 'Upload Admission Notification',  defaultAssignee: SHIRLEY, priority: 'medium', order: 1, estimatedDays: 2 },
+          { title: 'Upload Admission Notification',  defaultAssignee: MICHELLE, priority: 'medium', order: 1, estimatedDays: 2 },
           { title: 'Update TWH Bed List',            defaultAssignee: SALIMA,  priority: 'high',   order: 2, estimatedDays: 1 },
           { title: 'Update Resident NOK List',       defaultAssignee: SALIMA,  priority: 'high',   order: 3, estimatedDays: 1 },
           { title: 'Update Birthday List',           defaultAssignee: SALIMA,  priority: 'medium', order: 4, estimatedDays: 1 },
@@ -321,11 +317,11 @@ const seedDB = async () => {
         name: 'Contract — All',
         tasks: [
           { title: 'Confirm Welcome Email Received',        defaultAssignee: SALIMA,  priority: 'medium', order: 1, estimatedDays: 3 },
-          { title: 'Schedule PAQ Survey',                  defaultAssignee: AJITHA,  priority: 'high',   order: 2, estimatedDays: 5 },
+          { title: 'Schedule PAQ Survey',                  defaultAssignee: MICHELLE,  priority: 'high',   order: 2, estimatedDays: 5 },
           { title: 'Send STC Contract for Signature',      defaultAssignee: SALIMA,  priority: 'urgent', order: 3, estimatedDays: 2 },
           { title: 'Upload Signed STC Contract to Folder', defaultAssignee: SALIMA,  priority: 'high',   order: 4, estimatedDays: 7 },
           { title: 'Update Resident NOK List with Address', defaultAssignee: SALIMA,  priority: 'medium', order: 5, estimatedDays: 2 },
-          { title: 'Forward NOK Details to Home Liaison',  defaultAssignee: SHIRLEY, priority: 'medium', order: 6, estimatedDays: 2 }
+          { title: 'Forward NOK Details to Home Liaison',  defaultAssignee: MICHELLE, priority: 'medium', order: 6, estimatedDays: 2 }
         ]
       },
       // SECTION 5: LONG-TERM FUNDING — Private
@@ -345,7 +341,7 @@ const seedDB = async () => {
         tasks: [
           { title: 'Add Resident to WCL FNC Section',              defaultAssignee: SALIMA, priority: 'high',   order: 1, estimatedDays: 2  },
           { title: 'Add FNC Assessment Update to WCL',             defaultAssignee: SALIMA, priority: 'high',   order: 2, estimatedDays: 7  },
-          { title: 'Add to Current FNC Schedule (if eligible)',     defaultAssignee: AJITHA, priority: 'medium', order: 3, estimatedDays: 14 },
+          { title: 'Add to Current FNC Schedule (if eligible)',     defaultAssignee: MICHELLE, priority: 'medium', order: 3, estimatedDays: 14 },
           { title: 'Raise Retrospective FNC Invoice (if applicable)',defaultAssignee: SALIMA, priority: 'high',  order: 4, estimatedDays: 7  }
         ]
       },
@@ -356,7 +352,7 @@ const seedDB = async () => {
         tasks: [
           { title: 'Add Resident to WCL FNC Section',              defaultAssignee: SALIMA, priority: 'high',   order: 1, estimatedDays: 2  },
           { title: 'Add FNC Assessment Update to WCL',             defaultAssignee: SALIMA, priority: 'high',   order: 2, estimatedDays: 7  },
-          { title: 'Add to Current FNC Schedule (if eligible)',     defaultAssignee: AJITHA, priority: 'medium', order: 3, estimatedDays: 14 },
+          { title: 'Add to Current FNC Schedule (if eligible)',     defaultAssignee: MICHELLE, priority: 'medium', order: 3, estimatedDays: 14 },
           { title: 'Raise Retrospective FNC Invoice (if applicable)',defaultAssignee: SALIMA, priority: 'high',  order: 4, estimatedDays: 7  }
         ]
       },
@@ -367,7 +363,7 @@ const seedDB = async () => {
         tasks: [
           { title: 'Add Resident to WCL FNC Section',              defaultAssignee: SALIMA, priority: 'high',   order: 1, estimatedDays: 2  },
           { title: 'Add FNC Assessment Update to WCL',             defaultAssignee: SALIMA, priority: 'high',   order: 2, estimatedDays: 7  },
-          { title: 'Add to Current FNC Schedule (if eligible)',     defaultAssignee: AJITHA, priority: 'medium', order: 3, estimatedDays: 14 },
+          { title: 'Add to Current FNC Schedule (if eligible)',     defaultAssignee: MICHELLE, priority: 'medium', order: 3, estimatedDays: 14 },
           { title: 'Raise Retrospective FNC Invoice (if applicable)',defaultAssignee: SALIMA, priority: 'high',  order: 4, estimatedDays: 7  }
         ]
       },
@@ -378,7 +374,7 @@ const seedDB = async () => {
         tasks: [
           { title: 'Add Resident to WCL FNC Section',              defaultAssignee: SALIMA, priority: 'high',   order: 1, estimatedDays: 2  },
           { title: 'Add FNC Assessment Update to WCL',             defaultAssignee: SALIMA, priority: 'high',   order: 2, estimatedDays: 7  },
-          { title: 'Add to Current FNC Schedule (if eligible)',     defaultAssignee: AJITHA, priority: 'medium', order: 3, estimatedDays: 14 },
+          { title: 'Add to Current FNC Schedule (if eligible)',     defaultAssignee: MICHELLE, priority: 'medium', order: 3, estimatedDays: 14 },
           { title: 'Raise Retrospective FNC Invoice (if applicable)',defaultAssignee: SALIMA, priority: 'high',  order: 4, estimatedDays: 7  }
         ]
       },
@@ -392,7 +388,7 @@ const seedDB = async () => {
           { title: 'Update TWH Bed List',                                   defaultAssignee: SALIMA,  priority: 'urgent', order: 3, estimatedDays: 1 },
           { title: 'Archive Resident NOK List Entry',                       defaultAssignee: SALIMA,  priority: 'high',   order: 4, estimatedDays: 1 },
           { title: 'Remove from Birthday List',                             defaultAssignee: SALIMA,  priority: 'medium', order: 5, estimatedDays: 2 },
-          { title: 'Send Condolence Email O/S Expenses (if applicable)',    defaultAssignee: SHIRLEY, priority: 'high',   order: 6, estimatedDays: 3 },
+          { title: 'Send Condolence Email O/S Expenses (if applicable)',    defaultAssignee: MICHELLE, priority: 'high',   order: 6, estimatedDays: 3 },
           { title: 'Update FNC List (if applicable)',                       defaultAssignee: SALIMA,  priority: 'medium', order: 7, estimatedDays: 2 },
           { title: 'Archive Entry from Database',                           defaultAssignee: SALIMA,  priority: 'medium', order: 8, estimatedDays: 7 }
         ]
@@ -402,14 +398,14 @@ const seedDB = async () => {
         fundingType: 'all', category: 'hl-tasks',
         name: 'HL Supplementary Tasks',
         tasks: [
-          { title: 'Add NOK to Friends & Family List',         defaultAssignee: INDRE,  priority: 'medium', order: 1, estimatedDays: 2  },
-          { title: 'Media Consent Obtained',                   defaultAssignee: INDRE,  priority: 'medium', order: 2, estimatedDays: 7  },
-          { title: 'Create Activity Album',                    defaultAssignee: INDRE,  priority: 'low',    order: 3, estimatedDays: 7  },
-          { title: 'Send Welcome & Life Story Request Email',  defaultAssignee: INDRE,  priority: 'medium', order: 4, estimatedDays: 3  },
-          { title: 'Obtain Life Story from Family',            defaultAssignee: INDRE,  priority: 'medium', order: 5, estimatedDays: 14 },
-          { title: 'Create Door Poster',                       defaultAssignee: INDRE,  priority: 'low',    order: 6, estimatedDays: 7  },
-          { title: 'Complete DNACPR / Advance Directive',      defaultAssignee: AJITHA, priority: 'urgent', order: 7, estimatedDays: 7  },
-          { title: 'Notify Chaplaincy / Pastoral Care',        defaultAssignee: SHIRLEY,priority: 'low',    order: 8, estimatedDays: 7  }
+          { title: 'Add NOK to Friends & Family List',         defaultAssignee: MICHELLE,  priority: 'medium', order: 1, estimatedDays: 2  },
+          { title: 'Media Consent Obtained',                   defaultAssignee: MICHELLE,  priority: 'medium', order: 2, estimatedDays: 7  },
+          { title: 'Create Activity Album',                    defaultAssignee: MICHELLE,  priority: 'low',    order: 3, estimatedDays: 7  },
+          { title: 'Send Welcome & Life Story Request Email',  defaultAssignee: MICHELLE,  priority: 'medium', order: 4, estimatedDays: 3  },
+          { title: 'Obtain Life Story from Family',            defaultAssignee: MICHELLE,  priority: 'medium', order: 5, estimatedDays: 14 },
+          { title: 'Create Door Poster',                       defaultAssignee: MICHELLE,  priority: 'low',    order: 6, estimatedDays: 7  },
+          { title: 'Complete DNACPR / Advance Directive',      defaultAssignee: MICHELLE, priority: 'urgent', order: 7, estimatedDays: 7  },
+          { title: 'Notify Chaplaincy / Pastoral Care',        defaultAssignee: MICHELLE,priority: 'low',    order: 8, estimatedDays: 7  }
         ]
       },
       // SECTION 8: CHANGE IN FUNDING — Private
@@ -544,11 +540,9 @@ const seedDB = async () => {
 
     console.log('\n✅ Seed complete!');
     console.log('\nLogin credentials:');
-    console.log('  Admin:   admin@twhnh.com / admin123');
-    console.log('  Salima:  salima@twhnh.com / staff123');
-    console.log('  Shirley: shirley@twhnh.com / staff123');
-    console.log('  Ajitha:  ajitha@twhnh.com / staff123');
-    console.log('  Indre:   indre@twhnh.com / staff123');
+    console.log('  Admin:    admin@twhnh.com / admin123');
+    console.log('  Salima:   salima@twhnh.com / staff123');
+    console.log('  Michelle: michelle@twhnh.com / staff123');
 
     process.exit(0);
   } catch (error) {
