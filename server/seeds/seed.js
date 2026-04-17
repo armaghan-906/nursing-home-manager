@@ -247,11 +247,11 @@ const seedDB = async () => {
 
     // ── USERS ──────────────────────────────────────────────────────────────
     const users = await User.create([
-      { name: 'Admin User',  email: 'admin@oakwood.care',   password: 'admin123', role: 'admin'   },
-      { name: 'Salima',      email: 'salima@oakwood.care',  password: 'staff123', role: 'manager' },
-      { name: 'Shirley',     email: 'shirley@oakwood.care', password: 'staff123', role: 'staff'   },
-      { name: 'Ajitha',      email: 'ajitha@oakwood.care',  password: 'staff123', role: 'staff'   },
-      { name: 'Indre',       email: 'indre@oakwood.care',   password: 'staff123', role: 'staff'   }
+      { name: 'Admin User',  email: 'admin@twhnh.com',   password: 'admin123', role: 'admin'   },
+      { name: 'Salima',      email: 'salima@twhnh.com',  password: 'staff123', role: 'manager' },
+      { name: 'Shirley',     email: 'shirley@twhnh.com', password: 'staff123', role: 'staff'   },
+      { name: 'Ajitha',      email: 'ajitha@twhnh.com',  password: 'staff123', role: 'staff'   },
+      { name: 'Indre',       email: 'indre@twhnh.com',   password: 'staff123', role: 'staff'   }
     ]);
     const adminUser = users[0];
     console.log(`✓ Seeded ${users.length} users`);
@@ -544,11 +544,11 @@ const seedDB = async () => {
 
     console.log('\n✅ Seed complete!');
     console.log('\nLogin credentials:');
-    console.log('  Admin:   admin@oakwood.care / admin123');
-    console.log('  Salima:  salima@oakwood.care / staff123');
-    console.log('  Shirley: shirley@oakwood.care / staff123');
-    console.log('  Ajitha:  ajitha@oakwood.care / staff123');
-    console.log('  Indre:   indre@oakwood.care / staff123');
+    console.log('  Admin:   admin@twhnh.com / admin123');
+    console.log('  Salima:  salima@twhnh.com / staff123');
+    console.log('  Shirley: shirley@twhnh.com / staff123');
+    console.log('  Ajitha:  ajitha@twhnh.com / staff123');
+    console.log('  Indre:   indre@twhnh.com / staff123');
 
     process.exit(0);
   } catch (error) {
