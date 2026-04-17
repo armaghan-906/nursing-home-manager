@@ -54,6 +54,7 @@ const Residents = () => {
   const navigate = useNavigate();
 
   const fetchResidents = useCallback(async () => {
+    setLoading(true);
     try {
       const params = {};
       if (search) params.search = search;
