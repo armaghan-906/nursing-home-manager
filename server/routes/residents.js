@@ -28,11 +28,14 @@ router.get('/', protect, async (req, res) => {
       query.fundingType = fundingType;
     }
 
-    // Don't show discharged/deceased or archived by default unless explicitly asked
+    // Don't show discharged/deceased by default unless explicitly asked
     if (!status) {
       query.status = { $nin: ['discharged', 'deceased'] };
     }
-    query.archived = false;
+
+    // Filter by archived status (default to active only)
+    const showArchived = req.query.archived === 'true';
+    query.archived = showArchived;
 
     const residents = await Resident.find(query)
       .sort({ lastName: 1, firstName: 1 })
@@ -344,6 +347,26 @@ router.post('/:id/archive', protect, async (req, res) => {
     }
 
     res.json({ message: 'Resident archived successfully' });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// @route   POST /api/residents/:id/unarchive
+// @desc    Unarchive a resident (reactivate)
+router.post('/:id/unarchive', protect, async (req, res) => {
+  try {
+    const resident = await Resident.findByIdAndUpdate(
+      req.params.id,
+      { archived: false },
+      { new: true }
+    );
+
+    if (!resident) {
+      return res.status(404).json({ message: 'Resident not found' });
+    }
+
+    res.json({ message: 'Resident unarchived successfully' });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

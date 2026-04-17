@@ -50,6 +50,7 @@ const Residents = () => {
   const [editResident, setEditResident] = useState(null);
   const [stats, setStats] = useState(null);
   const [activeMenu, setActiveMenu] = useState(null);
+  const [showArchived, setShowArchived] = useState(false);
   const navigate = useNavigate();
 
   const fetchResidents = useCallback(async () => {
@@ -58,6 +59,7 @@ const Residents = () => {
       if (search) params.search = search;
       if (statusFilter !== 'all') params.status = statusFilter;
       if (fundingFilter !== 'all') params.fundingType = fundingFilter;
+      params.archived = showArchived.toString();
 
       const { data } = await api.get('/residents', { params });
       setResidents(data.residents);
@@ -66,7 +68,7 @@ const Residents = () => {
     } finally {
       setLoading(false);
     }
-  }, [search, statusFilter, fundingFilter]);
+  }, [search, statusFilter, fundingFilter, showArchived]);
 
   const fetchStats = useCallback(async () => {
     try {
@@ -89,6 +91,19 @@ const Residents = () => {
       fetchStats();
     } catch (err) {
       toast.error('Failed to archive resident');
+    }
+    setActiveMenu(null);
+  };
+
+  const handleUnarchive = async (id) => {
+    if (!confirm('Unarchive this resident? They will return to the active list.')) return;
+    try {
+      await api.post(`/residents/${id}/unarchive`);
+      toast.success('Resident reactivated');
+      fetchResidents();
+      fetchStats();
+    } catch (err) {
+      toast.error('Failed to unarchive resident');
     }
     setActiveMenu(null);
   };
@@ -136,6 +151,32 @@ const Residents = () => {
           onClick={() => { setEditResident(null); setShowModal(true); }}
         >
           <FiPlus size={18} /> Add Resident
+        </button>
+      </div>
+
+      {/* Tabs */}
+      <div style={{ display: 'flex', gap: 10, marginBottom: 20, borderBottom: '1px solid var(--border)' }}>
+        <button
+          className={`btn btn-ghost ${!showArchived ? 'btn-active' : ''}`}
+          onClick={() => setShowArchived(false)}
+          style={{
+            padding: '10px 16px',
+            borderBottom: showArchived ? 'none' : '2px solid var(--primary)',
+            borderRadius: 0
+          }}
+        >
+          Active Residents
+        </button>
+        <button
+          className={`btn btn-ghost ${showArchived ? 'btn-active' : ''}`}
+          onClick={() => setShowArchived(true)}
+          style={{
+            padding: '10px 16px',
+            borderBottom: showArchived ? '2px solid var(--primary)' : 'none',
+            borderRadius: 0
+          }}
+        >
+          Archived Residents
         </button>
       </div>
 
@@ -254,9 +295,15 @@ const Residents = () => {
                           <button onClick={() => { setEditResident(r); setShowModal(true); setActiveMenu(null); }}>
                             <FiEdit2 size={14} /> Edit
                           </button>
-                          <button className="dropdown-danger" onClick={() => handleArchive(r._id)}>
-                            <FiTrash2 size={14} /> Archive
-                          </button>
+                          {!showArchived ? (
+                            <button className="dropdown-danger" onClick={() => handleArchive(r._id)}>
+                              <FiTrash2 size={14} /> Archive
+                            </button>
+                          ) : (
+                            <button className="dropdown-success" onClick={() => handleUnarchive(r._id)}>
+                              <FiEye size={14} /> Unarchive
+                            </button>
+                          )}
                         </div>
                       )}
                     </div>
