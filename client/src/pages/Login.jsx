@@ -40,7 +40,7 @@ const Login = () => {
           <div className="login-logo">
             <FiShield size={28} />
           </div>
-          <h1>Oakwood Care</h1>
+          <h1>TWH Nursing Home</h1>
           <p>Resident Management System</p>
         </div>
 
@@ -81,7 +81,7 @@ const Login = () => {
         </form>
 
         <div className="login-footer">
-          <p>Demo: admin@oakwood.care / admin123</p>
+          <p>Demo: admin@twhnh.com / admin123</p>
         </div>
       </div>
     </div>
