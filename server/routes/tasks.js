@@ -149,7 +149,15 @@ router.delete('/:id', protect, async (req, res) => {
 
 // @route   POST /api/tasks/:id/attachments
 // @desc    Upload attachment to a task
-router.post('/:id/attachments', protect, upload.single('file'), async (req, res) => {
+router.post('/:id/attachments', protect, (req, res, next) => {
+  upload.single('file')(req, res, (err) => {
+    if (err) {
+      console.error('Upload error:', err);
+      return res.status(400).json({ message: err.message || 'File upload failed' });
+    }
+    next();
+  });
+}, async (req, res) => {
   try {
     const task = await Task.findById(req.params.id);
     if (!task) {
@@ -175,6 +183,7 @@ router.post('/:id/attachments', protect, upload.single('file'), async (req, res)
 
     res.status(201).json(task);
   } catch (error) {
+    console.error('Task attachment save error:', error);
     res.status(500).json({ message: error.message });
   }
 });
