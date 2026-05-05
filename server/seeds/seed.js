@@ -237,6 +237,23 @@ const seedDB = async () => {
     await mongoose.connect(process.env.MONGODB_URI);
     console.log('Connected to MongoDB');
 
+    const force = process.argv.includes('--force');
+    const existingResidents = await Resident.countDocuments();
+    const existingUsers = await User.countDocuments();
+
+    if ((existingResidents > 0 || existingUsers > 0) && !force) {
+      console.error('\n⛔ Refusing to seed: database is not empty.');
+      console.error(`   Found ${existingUsers} user(s) and ${existingResidents} resident(s).`);
+      console.error('   Running this script wipes ALL users, residents, tasks, and workflow templates.');
+      console.error('   If you really want to wipe and re-seed, re-run with --force:');
+      console.error('     npm run seed -- --force\n');
+      process.exit(1);
+    }
+
+    if (force) {
+      console.log(`⚠️  --force passed: wiping ${existingUsers} user(s), ${existingResidents} resident(s), and all tasks/templates...`);
+    }
+
     // Clear existing
     await User.deleteMany({});
     await WorkflowTemplate.deleteMany({});
