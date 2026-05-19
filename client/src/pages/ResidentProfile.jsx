@@ -138,8 +138,8 @@ const ResidentProfile = () => {
       });
       toast.success('File uploaded');
       fetchResident();
-    } catch {
-      toast.error('Upload failed');
+    } catch (err) {
+      toast.error(err.response?.data?.message || err.message || 'Upload failed');
     } finally {
       setUploadingTaskId(null);
     }

@@ -12,7 +12,6 @@ const storage = new CloudinaryStorage({
   params: {
     folder: 'nursing-home-manager',
     resource_type: 'auto',
-    allowed_formats: ['jpeg', 'jpg', 'png', 'gif', 'pdf', 'doc', 'docx', 'xls', 'xlsx', 'txt', 'csv'],
   },
 });
 

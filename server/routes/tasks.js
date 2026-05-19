@@ -5,17 +5,23 @@ const { protect } = require('../middleware/auth');
 const multer = require('multer');
 const { cloudinary, storage } = require('../config/cloudinary');
 
+const ALLOWED_EXTENSIONS = [
+  'jpeg', 'jpg', 'png', 'gif', 'webp', 'heic', 'heif', 'svg', 'bmp', 'tiff',
+  'pdf', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'txt', 'csv', 'rtf', 'odt'
+];
+
 const upload = multer({
   storage,
   limits: { fileSize: 10 * 1024 * 1024 }, // 10MB limit
   fileFilter: (req, file, cb) => {
-    const allowedTypes = /jpeg|jpg|png|gif|pdf|doc|docx|xls|xlsx|txt|csv/;
-    const extname = allowedTypes.test(require('path').extname(file.originalname).toLowerCase());
-    const mimetype = allowedTypes.test(file.mimetype);
-    if (extname || mimetype) {
+    const ext = require('path').extname(file.originalname).toLowerCase().replace('.', '');
+    if (ALLOWED_EXTENSIONS.includes(ext)) {
       return cb(null, true);
     }
-    cb(new Error('Only document and image files are allowed'));
+    if (file.mimetype.startsWith('image/') || file.mimetype === 'application/pdf') {
+      return cb(null, true);
+    }
+    cb(new Error(`File type not allowed (.${ext || 'unknown'}). Allowed: images, PDF, Word, Excel, PowerPoint, text.`));
   }
 });
 
